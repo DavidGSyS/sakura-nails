@@ -1,26 +1,210 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
+/* ─── Sakura Design System ─────────────────────────────── */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Palette */
+  --color-sakura-blush:  #F5B7C5;
+  --color-sakura-light:  #FCE4EC;
+  --color-sakura-rose:   #D98C9A;
+  --color-sakura-white:  #FFF8FA;
+  --color-sakura-deep:   #6B4B57;
+  --color-sakura-gold:   #C9956E;
+  --color-sakura-soft:   #F9D5DF;
+  --color-sakura-muted:  #9E6E78;
+
+  /* Typography */
+  --font-display: var(--font-playfair);
+  --font-body:    var(--font-lato);
+
+  /* Animations */
+  --animate-petal-fall:  petal-fall 8s ease-in-out infinite;
+  --animate-shimmer:     shimmer 2.5s ease-in-out infinite;
+  --animate-float:       float 4s ease-in-out infinite;
+  --animate-fade-up:     fade-up 0.7s ease both;
+  --animate-pulse-soft:  pulse-soft 3s ease-in-out infinite;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ─── Keyframes ─────────────────────────────────────────── */
+@keyframes petal-fall {
+  0%   { transform: translateY(-10%) rotate(0deg) translateX(0);   opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 0.6; }
+  100% { transform: translateY(110vh) rotate(720deg) translateX(60px); opacity: 0; }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-12px); }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(245, 183, 197, 0.5); }
+  50%       { box-shadow: 0 0 0 16px rgba(245, 183, 197, 0); }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes ripple {
+  0%   { transform: scale(1);   opacity: 1; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+/* ─── Base Styles ───────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: #D98C9A #FCE4EC;
+}
+
+html::-webkit-scrollbar       { width: 6px; }
+html::-webkit-scrollbar-track { background: #FCE4EC; }
+html::-webkit-scrollbar-thumb { background: #D98C9A; border-radius: 3px; }
+
+body {
+  background-color: #FFF8FA;
+  color: #6B4B57;
+  overflow-x: hidden;
+}
+
+/* ─── Utility Classes ───────────────────────────────────── */
+.glass {
+  background: rgba(255, 248, 250, 0.65);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(245, 183, 197, 0.3);
+}
+
+.glass-dark {
+  background: rgba(107, 75, 87, 0.55);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(245, 183, 197, 0.2);
+}
+
+.sakura-gradient {
+  background: linear-gradient(135deg, #FCE4EC 0%, #F5B7C5 40%, #D98C9A 100%);
+}
+
+.sakura-gradient-text {
+  background: linear-gradient(135deg, #D98C9A 0%, #C9956E 50%, #6B4B57 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gold-gradient {
+  background: linear-gradient(135deg, #C9956E 0%, #e8c4a0 50%, #C9956E 100%);
+  background-size: 200% auto;
+}
+
+.shimmer-btn {
+  background: linear-gradient(
+    90deg,
+    #D98C9A 0%,
+    #F5B7C5 40%,
+    #C9956E 50%,
+    #F5B7C5 60%,
+    #D98C9A 100%
+  );
+  background-size: 200% auto;
+  animation: shimmer 2.5s linear infinite;
+}
+
+.section-padding {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+@media (min-width: 768px) {
+  .section-padding {
+    padding-top: 7rem;
+    padding-bottom: 7rem;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ─── Masonry Gallery Grid ──────────────────────────────── */
+.masonry-grid {
+  columns: 2;
+  column-gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .masonry-grid {
+    columns: 3;
+    column-gap: 1.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .masonry-grid {
+    columns: 4;
+    column-gap: 1.5rem;
+  }
+}
+
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 768px) {
+  .masonry-item {
+    margin-bottom: 1.25rem;
+  }
+}
+
+/* ─── Petal Overlay ─────────────────────────────────────── */
+.petal {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: radial-gradient(ellipse, #F5B7C5 0%, #D98C9A 100%);
+  border-radius: 50% 0 50% 0;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+/* ─── Booking Step Indicator ────────────────────────────── */
+.step-line {
+  height: 2px;
+  background: linear-gradient(90deg, #D98C9A, #FCE4EC);
+  flex: 1;
+}
+
+/* ─── Custom Radio / Checkbox ───────────────────────────── */
+.service-card-radio:checked + .service-label {
+  border-color: #D98C9A;
+  background: rgba(245, 183, 197, 0.2);
+}
+
+/* ─── Lightbox override ─────────────────────────────────── */
+.yarl__container {
+  background-color: rgba(107, 75, 87, 0.92) !important;
+}
+
+/* ─── Reduce motion ─────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
