@@ -27,7 +27,7 @@ const HOURS = [
 ]
 
 const WHATSAPP = 'https://wa.me/573005361330'
-const INSTAGRAM = 'https://instagram.com/mochitoooo_sck'
+const INSTAGRAM = 'https://instagram.com/sakuranails.ctg'
 
 export default function Footer() {
   return (

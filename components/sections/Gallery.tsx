@@ -123,6 +123,14 @@ const GALLERY_ITEMS = [
     title: 'Semipermanente Rosa Pastel',
     tall: false,
   },
+  {
+    id: 'g15',
+    src: '/images/u%C3%B1as/15.jpeg',
+    alt: 'Semipermanente rosa y dorado con diseño elegante',
+    category: 'Semipermanente',
+    title: 'Semipermanente Rosa y Dorado',
+    tall: false,
+  },
 ]
 
 export default function Gallery() {

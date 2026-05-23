@@ -25,7 +25,7 @@ function InstagramIcon({ size = 20 }: { size?: number }) {
 }
 
 const WHATSAPP_NUMBER = '573005361330'
-const INSTAGRAM_HANDLE = 'mochitoooo_sck'
+const INSTAGRAM_HANDLE = 'sakuranails.ctg'
 
 export default function FloatingActions() {
   const [hovered, setHovered] = useState<'wa' | 'ig' | null>(null)
